@@ -1,0 +1,40 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center">
+        <h1 class="display-4 text-primary">Welcome, {{ request.user.username }}!</h1>
+        <p class="lead text-secondary">Manage your employees efficiently using the options below.</p>
+        <hr class="my-4 border-primary">
+    </div>
+
+    <div class="row text-center mt-5">
+        <div class="col-md-6 mb-4">
+            <a href="{% url 'viewallemployees' %}" class="btn btn-lg btn-primary w-100 py-3 shadow-sm">
+                <i class="bi bi-people"></i> View All Employees
+            </a>
+        </div>
+        <div class="col-md-6 mb-4">
+            <a href="{% url 'addemp' %}" class="btn btn-lg btn-primary w-100 py-3 shadow-sm">
+                <i class="bi bi-person-plus-fill"></i> Add Employee
+            </a>
+        </div>
+        <div class="col-md-6 mb-4">
+            <a href="{% url 'deleteemp' %}" class="btn btn-lg btn-primary w-100 py-3 shadow-sm">
+                <i class="bi bi-person-dash-fill"></i> Remove An Employee
+            </a>
+        </div>
+        <div class="col-md-6 mb-4">
+            <a href="{% url 'filteremp' %}" class="btn btn-lg btn-primary w-100 py-3 shadow-sm">
+                <i class="bi bi-funnel"></i> Filter Employee Details
+            </a>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'logout' %}" class="btn btn-lg btn-primary w-25 py-2 shadow-sm">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+    </div>
+</div>
+{% endblock %}
