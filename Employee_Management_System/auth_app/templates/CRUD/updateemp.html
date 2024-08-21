@@ -1,0 +1,49 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="display-5 text-primary">Update Employee Details</h1>
+    <hr class="my-4 border-primary">
+
+    <form method="POST" action="{% url 'updateemp' emp.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ emp.first_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ emp.last_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" class="form-control" id="salary" name="salary" value="{{ emp.salary }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="bonus" class="form-label">Bonus</label>
+            <input type="number" class="form-control" id="bonus" name="bonus" value="{{ emp.bonus }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="{{ emp.phone }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="dept" class="form-label">Department</label>
+            <select class="form-control" id="dept" name="dept" required>
+                {% for department in departments %}
+                    <option value="{{ department.id }}" {% if emp.dept.id == department.id %}selected{% endif %}>{{ department.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-control" id="role" name="role" required>
+                {% for role in roles %}
+                    <option value="{{ role.id }}" {% if emp.role.id == role.id %}selected{% endif %}>{{ role.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Employee</button>
+    </form>
+</div>
+{% endblock %}
